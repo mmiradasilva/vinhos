@@ -1,0 +1,29 @@
+{
+  "name": "cellar",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "e2e"
+  ],
+  "scripts": {
+    "db": "npm run db -w @cellar/api",
+    "build": "npm run build -w @cellar/web",
+    "start": "npm start -w @cellar/api",
+    "dev": "concurrently -n api,web -c blue,magenta \"npm run dev -w @cellar/api\" \"npm run dev -w @cellar/web\"",
+    "test": "npm test -w @cellar/shared && npm test -w @cellar/api",
+    "test:e2e": "npm test -w @cellar/e2e",
+    "typecheck": "tsc -p packages/shared && tsc -p apps/api && tsc -p apps/web && tsc -p e2e"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "concurrently": "^10.0.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}
