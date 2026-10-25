@@ -5,6 +5,8 @@ services:
     name: cellar
     runtime: node
     region: frankfurt
+    # Free while testing: sleeps when idle. Switch to a paid plan before the public launch (DEPLOY.md).
+    plan: free
     # NODE_ENV=production also applies to the build, so dev dependencies (Vite, TypeScript) are included explicitly.
     buildCommand: npm ci --include=dev && npm run build
     startCommand: npm start
@@ -31,5 +33,7 @@ services:
 databases:
   - name: cellar-db
     region: frankfurt
+    # Free databases are DELETED after 30 days. Upgrade before real users store data (DEPLOY.md).
+    plan: free
     databaseName: cellar
     user: cellar
